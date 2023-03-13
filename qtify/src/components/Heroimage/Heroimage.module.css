@@ -1,0 +1,27 @@
+.container {
+  background-color: var(--color-black);
+  height: 212px;
+  width: 100vw; /*799px; */
+  display: flex;
+  margin-top: 29px;
+  margin-bottom: 29px;
+  /* margin-right: 314px;
+  margin-left: 327px; */
+  justify-content: center;
+}
+.herotext {
+  text-align: center;
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 48px;
+  margin-top: 68px;
+  margin-bottom: 44px;
+}
+.image {
+  width: 212px;
+  height: 212px;
+  /* margin-top: 29px;
+  margin-bottom: 29px; */
+  /* margin-left: 30px; */
+}
