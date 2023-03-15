@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.sectiongrid {
+  margin: 0 32px;
+}
+.cardsWrapper {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.showall {
+  color: var(--color-primary);
+}
