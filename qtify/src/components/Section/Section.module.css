@@ -12,4 +12,5 @@
 }
 .showall {
   color: var(--color-primary);
+  cursor: pointer;
 }
