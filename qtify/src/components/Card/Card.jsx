@@ -1,3 +1,4 @@
+import { Tooltip } from "@mui/material";
 import React from "react";
 import Cardimg from "../../assests/image.png";
 import Styles from "../Card/card.module.css";
@@ -6,8 +7,9 @@ function Card({ data, type }) {
   const getCard = (type) => {
     switch (type) {
       case "album": {
-        const { image, follows, title, slug } = data;
+        const { image, follows, title, slug, songs } = data;
         return (
+          // <Tooltip title={`${songs.length} songs`} placement="top" arrow>
           <div className={Styles.card}>
             <div className={Styles.container}>
               <img className={Styles.image} src={image} loading="lazy" />
@@ -19,6 +21,7 @@ function Card({ data, type }) {
               <p>{title}</p>
             </div>
           </div>
+          // </Tooltip>
         );
       }
       case "song": {
@@ -33,7 +36,7 @@ function Card({ data, type }) {
                 loading="lazy"
               />
               <div className={Styles.follows}>
-                <p className={Styles.text}>{likes}Likes</p>
+                <p className={Styles.text}>{likes} Likes</p>
               </div>
             </div>
             <div className={Styles.songcategory}>

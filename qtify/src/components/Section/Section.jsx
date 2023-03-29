@@ -1,21 +1,39 @@
 import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import Carousel from "../Carousel/Carousel";
+import FilterSection from "../FilterSection/FilterSection";
 import Styles from "./Section.module.css";
 
-function Section({ title, dataSource }) {
-  const [cards, setCards] = useState([]);
+export default function Section({ title, dataSource, filterSource, type }) {
+  const [data, setData] = useState([]);
+  const [filters, setFilters] = useState([{ key: "all", label: "All" }]);
+  const [selectedFilterIndex, setSelectedFilterIndex] = useState(0);
   const [isShowAll, setIsShowAll] = useState(false);
 
+  const fetchData = async (source) => {
+    const data = await source();
+    setData(data || []);
+  };
   useEffect(() => {
-    dataSource().then((data) => {
-      setCards(data);
-    });
+    fetchData(dataSource);
+    if (filterSource) {
+      filterSource().then((response) => {
+        const { data } = response;
+        setFilters([...filters, ...data]);
+      });
+    }
   }, []);
 
   const handleToggle = () => {
     setIsShowAll((prevState) => !prevState);
   };
+
+  // const filteredData = data.filter;
+  const filteredCards = data.filter((card) =>
+    selectedFilterIndex !== 0
+      ? card.genre.key === filters[selectedFilterIndex].key
+      : card
+  );
 
   return (
     <div className={Styles.sectiongrid}>
@@ -27,27 +45,32 @@ function Section({ title, dataSource }) {
           <h4>{isShowAll ? "Collapse" : "Show All"}</h4>
         </div>
       </div>
+      {filterSource && (
+        <FilterSection
+          data={filters}
+          selectedFilterIndex={selectedFilterIndex}
+          setSelectedFilterIndex={setSelectedFilterIndex}
+        />
+      )}
       <div className={Styles.cardsWrapper}>
         {isShowAll ? (
-          cards.map((card) => (
+          filteredCards.map((card) => (
             <Card
               data={{
                 title: card.title,
                 image: card.image,
                 follows: card.follows,
               }}
-              type="album"
+              type={type}
             />
           ))
         ) : (
           <Carousel
-            data={cards}
-            renderComponent={(data) => <Card data={data} type="album" />}
+            data={filteredCards}
+            renderComponent={(data) => <Card data={data} type={type} />}
           />
         )}
       </div>
     </div>
   );
 }
-
-export default Section;

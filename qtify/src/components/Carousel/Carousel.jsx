@@ -12,6 +12,7 @@ export default function Carousel({ data, renderComponent }) {
       slidesPerView={"auto"}
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
+      style={{ paddingLeft: "12px", paddingRight: "12px", paddingTop: "15px" }}
     >
       <CarouselLeftNavigation />
       <CarouselRightNavigation />

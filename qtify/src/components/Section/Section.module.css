@@ -4,6 +4,7 @@
 }
 .sectiongrid {
   margin: 0 32px;
+  margin-top: 30px;
 }
 .cardsWrapper {
   display: flex;

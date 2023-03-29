@@ -1,0 +1,5 @@
+.FilterAll {
+  display: flex;
+  gap: 53px;
+  color: var(--color-white) !important;
+}
